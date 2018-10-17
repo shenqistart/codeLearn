@@ -13,10 +13,10 @@ Animal.prototype.eat = function () {
 function Cat(type) {
   //Animal.call(this,type)
 }
+
 // 3.继承父类实例上的所有属性 
 // Cat.prototype = new Animal();
 // let cat = new Cat('哺乳类'); // 初始化子类不能 给父类传参
-
 
 // 2.获取父类的公共属性
 // function create(parentPrototype) {
