@@ -76,24 +76,48 @@ fs.readFile('note.md','utf8',function () {
   })
 });
 // 在node中一般处理异步我们可以使用nextTick,微任务不能递归否则会卡死
-class P {
-  constructor(){
-    this.arr = [];
-    process.nextTick(()=>{
-      this.arr.forEach(fn=>fn());
-    })
-  }
-  then(fn){
-    this.arr.push(fn);
-  }
+// class P {
+//   constructor(){
+//     this.arr = [];
+//     process.nextTick(()=>{
+//       this.arr.forEach(fn=>fn());
+//     });
+//   }
+//   then(fn){
+//     this.arr.push(fn);
+//   }
+// }
+// let p = new P();
+// p.then(() => {
+//   console.log('then1');
+// });
+// p.then(() => {
+//   console.log('then1');
+// });
+// p.then(()=>{
+//   console.log('then1');
+// });
+
+
+// process 环境变量 env 参数 argv
+// webpack 开发环境还是生产环境 definePlugin
+// 开发时 使用本地的接口 localhost:9001
+// 上线时 http://www.zfpx.cn
+let url = '';
+if (process.env.NODE_ENV === 'development'){
+  url = 'http://localhost:9001' 
+}else{
+  url = 'http://www.zfpx.cn'
 }
-let p = new P();
-p.then(() => {
-  console.log('then1');
-});
-p.then(() => {
-  console.log('then1');
-});
-p.then(()=>{
-  console.log('then1');
-});
+console.log(url);
+
+
+// yargs 把执行命令的时候传递参数解析成对象,可以自己手动将其变成对象
+let args = process.argv.slice(2);
+args = args.reduce((prev,next,currentIndex,arr)=>{
+  if(next.includes('-')){
+    prev[next.slice(1)] = arr[currentIndex+1];
+  }
+  return prev
+},{});
+console.log(args.p);
