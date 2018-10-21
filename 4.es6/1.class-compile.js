@@ -33,6 +33,7 @@ function () {
   _createClass(Person, [{
     key: "say",
     value: function say() {
+      console.log('-----------', this);
       console.log('饿了');
     }
   }]);
@@ -67,7 +68,7 @@ function logger(target, prorperty, descriptor) {
 
   descriptor.value = function () {
     console.log('before');
-    old();
+    old.call(target.prototype);
     console.log('after');
   };
 }

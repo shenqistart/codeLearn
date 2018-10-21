@@ -8,6 +8,7 @@ class Person {
   @type message ="懒惰";
   @logger
   say(){
+    console.log('-----------',this)
     console.log('饿了')
   }
 }
@@ -32,7 +33,7 @@ function logger(target, prorperty, descriptor) {
   console.log(prorperty)
   descriptor.value = function () {
     console.log('before');
-    old();
+    old.call(target.prototype);
     console.log('after');
   }
 }
