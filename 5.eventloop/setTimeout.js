@@ -38,3 +38,11 @@ Promise.resolve().then(()=>{
 
 // node 并不是javascript全集 ecmascript + 模块 （服务端必备的方法）
 
+// 进程里面包括线程
+
+// v8引擎中的方法还是再的 模块 （操作文件 文件读取 写入）
+
+// 异步同步    被调用方
+// 非阻塞 阻塞 调用方 
+// node版本 最新的 nvm 切换node版本 nvm-win
+
