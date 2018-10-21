@@ -13,7 +13,6 @@
 // 浏览器的事件环 微任务会优先执行
 // then方法 微任务
 // setTimeout 宏任务
-
 setTimeout(() => {
   console.log('out2');
   Promise.resolve().then(()=>{
@@ -28,4 +27,14 @@ Promise.resolve().then(()=>{
 });
 // 默认先调用主栈 主栈执行完后 清空微任务，在取出宏任务队列中的第一个执行，并且执行完后再次清空微任务，再取第二个 环
 
-// vue nextTick
+// vue nextTick 如何实现的延迟
+ 
+// 宏任务 setImmediate ie下使用 / setTimeout / MessageChannel
+
+// 微任务 promise.then方法 MutationObserver
+
+
+// 异步/非阻塞/ io 文件的读写
+
+// node 并不是javascript全集 ecmascript + 模块 （服务端必备的方法）
+
