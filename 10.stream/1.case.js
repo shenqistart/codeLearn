@@ -10,12 +10,14 @@ let rs = new ReadStream('a.md',{
 });
 rs.on('open',function () {
   console.log('open')
-})
+});
+let arr = [];
 rs.on('data',function (data) {
+  arr.push(data);
   console.log(data);
 });
 rs.on('end',function (params) {
-  console.log('end')
+  console.log(Buffer.concat(arr).toString())
 })
 rs.on('error',function (err) {
   console.log(err);

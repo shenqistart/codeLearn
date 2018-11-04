@@ -14,7 +14,7 @@ class ReadStream extends EventEmitter {
     this.flowing = null;
     // 读取文件的位置
     this.pos = this.start; // this.pos会变
-
+    //this.buffer = Buffer.alloc(this.highWaterMark)
     // 判断用户监听了什么事件？
     this.on('newListener', (type) => {
       if (type === 'data') {
