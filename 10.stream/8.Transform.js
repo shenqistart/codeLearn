@@ -8,7 +8,6 @@ class MyStream extends Transform{
 // 把输入的内容转化成大写
 let myStream = new MyStream();
 process.stdin.pipe(myStream).pipe(process.stdout);
-
 // 四种流 读 fs.createReadStream 写 fs.createWriteStream
 //  双工 socket 转化 gzip
 
