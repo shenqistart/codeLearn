@@ -8,9 +8,6 @@ let mime = require('mime');
 // 会把请求过来的信息 socket = > req+res,分配好后触发一个request方法
 
 let url = require('url');// node处理路径的
-
-
-
 server.on('request', function (req, res) {
   let {pathname} = url.parse(req.url);
   // pathname /1.css  /ajax.html
@@ -33,8 +30,24 @@ server.on('request', function (req, res) {
         res.end('Not Found');
       }
     }else{
-      res.setHeader('Content-Type', mime.getType(realPath)+';charset=utf8')
-      fs.createReadStream(realPath).pipe(res);
+      // 如果文件存在 不要马上去读 有可能是一个文件夹
+      fs.stat(realPath,function (err,statObj) {
+        if(statObj.isFile()){
+          res.setHeader('Content-Type', mime.getType(realPath) + ';charset=utf8');
+          fs.createReadStream(realPath).pipe(res);
+        }else{
+          let r = path.join(realPath,'index.html');
+          fs.access(r,function (err) {
+            if(err){
+              res.statusCode = 404;
+              res.end('not found');
+            }else{
+              res.setHeader('Content-Type', 'text/html;charset=utf8');
+              fs.createReadStream(r).pipe(res);
+            }
+          })
+        }
+      });
     }
   })
 }).listen(3000, function () {
