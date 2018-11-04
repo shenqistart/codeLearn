@@ -25,7 +25,27 @@ class ReadStream extends EventEmitter {
       }
     })
   }
+  pause(){
+    this.flowing = false;
+  }
+  resume(){
+    this.flowing = true;
+    this.read(); // 变成流动模式 继续读取文件即可
+  }
   // 读取逻辑
+  pipe(ws){
+    this.on('data',(data)=>{
+      let flag = ws.write(data);
+      console.log(flag)
+      if(!flag){
+        this.pause();
+      }
+    });
+    ws.on('drain',()=>{
+      console.log('抽干一次')
+      this.resume();
+    })
+  }
   open() {
     fs.open(this.path, this.flags, (err, fd) => {
       if (err) { // 文件是存在的
