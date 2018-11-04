@@ -42,7 +42,6 @@ class ReadStream extends EventEmitter {
       }
     });
     ws.on('drain',()=>{
-      console.log('抽干一次')
       this.resume();
     })
   }

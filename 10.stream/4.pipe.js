@@ -12,3 +12,7 @@ let WriteStream = require('./WriteStream');
 let rs = new ReadStream('1.txt', { highWaterMark: 4 });
 let ws = new WriteStream('2.txt', { highWaterMark: 1 });
 rs.pipe(ws);
+
+
+// 读取的过程 fs.createReadStream() read() 
+// 方法是父类实现的 Readable接口，我们的子类会继承这个Readable接口，默认我们写子类时 会实现一个_read方法
