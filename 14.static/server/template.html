@@ -7,6 +7,8 @@
   <title>Document</title>
 </head>
 <body>
- 
+  <%dirs.forEach(item=>{%>
+    <li><a href="<%=item.path%>"><%=item.n%></a></li>
+  <%})%>
 </body>
 </html>
