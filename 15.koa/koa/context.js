@@ -11,7 +11,7 @@ function defineSetter(property,key) {
   proto.__defineSetter__(key,function (value) {
     this[property][key] = value;
   });
-}
+};
 defineGetter('request','path');
 defineGetter('request','url');
 defineGetter('response','body');

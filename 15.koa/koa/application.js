@@ -40,7 +40,7 @@ class Application extends EventEmitter{
     p.then(function () {
       let body = ctx.body;
       if (body instanceof Stream) { // 先判断流，在判断是不是对象
-        body.pipe(res);
+        body.pipe(res); // 异步方法
       }else if(typeof(body) === 'number'){
         res.setHeader('Content-Type', 'text/plain;charset=utf8');
         res.end(body.toString());
@@ -55,7 +55,7 @@ class Application extends EventEmitter{
       }
     }).catch(e=>{
       this.emit('error',e);
-    })
+    });
   }
   // 中间件方法 用来收集中间件的
   use(callback){

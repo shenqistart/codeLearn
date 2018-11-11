@@ -4,7 +4,7 @@ let fs = require('fs');
 let path = require('path');
 app.use(async (ctx,next)=>{
   ctx.body = 'zfpx';
-  await next()
+  return next()
  // ctx.body = fs.createReadStream(path.join(__dirname,'index.html'))
 });
 app.use(async (ctx, next) => {
