@@ -18,7 +18,7 @@ app.use((next) => {
   next();
   console.log('6');
 });
-let fn = app.middlewares.reduce( (a,b)=>(...args)=> a(() => b(...args)))
+let fn = app.middlewares.reduce((a,b)=>(...args)=> a(() => b(...args)));
 fn(()=>{});
 // redux compose 组合方法 reduceRight  
 // let fn = app.middlewares.reduceRight((a,b)=>()=>b(a),()=>{});
