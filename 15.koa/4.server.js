@@ -12,12 +12,12 @@ let logger = function () {
 app.use(async (ctx,next)=>{
     ctx.body = 1000;
     return next(); // 如果next后面没有逻辑可以直接用return 即可
-})
+});
 app.use(async(ctx, next) => {
     await logger();
     ctx.body = 2000;
     next();
-})
+});
 app.listen(3000, 'localhost', () => {
   console.log(`server start 3000`);
 })

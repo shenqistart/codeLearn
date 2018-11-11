@@ -3,6 +3,7 @@ let http = require('http');
 let context = require('./context');
 let request = require('./request');
 let response = require('./response');
+let Stream = require('stream');
 class Application extends EventEmitter{
   constructor(){
     super();
@@ -32,10 +33,28 @@ class Application extends EventEmitter{
     // 先要创建一个context对象
     let ctx = this.createContext(req,res);
     // 要把所有的中间件进行组合
+    res.statusCode = 404;
+    // res.setHeader('Content-Disposition', 'attachment');
     let p = this.compose(ctx,this.middlewares);
     // 我希望等待所有中间件执行完后 在取出ctx.body把结果响应回去
     p.then(function () {
-      console.log(ctx.body);
+      let body = ctx.body;
+      if (body instanceof Stream) { // 先判断流，在判断是不是对象
+        body.pipe(res);
+      }else if(typeof(body) === 'number'){
+        res.setHeader('Content-Type', 'text/plain;charset=utf8');
+        res.end(body.toString());
+      }else if(typeof body == 'object'){
+        res.setHeader('Content-Type','application/json;charset=utf8');
+        res.end(JSON.stringify(body));
+      }else if(typeof body === 'string' || Buffer.isBuffer(body)){
+        res.setHeader('Content-Type', 'text/plain;charset=utf8');
+        res.end(body);
+      }else{
+        res.end(`Not Found`);
+      }
+    }).catch(e=>{
+      this.emit('error',e);
     })
   }
   // 中间件方法 用来收集中间件的
