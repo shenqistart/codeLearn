@@ -78,7 +78,7 @@ app.use(async(ctx,next)=>{
 });
 app.listen(4000);
 
-
+// 实现一个可以解析任何请求体的方法 json form 文件上传 ... 文本 xml
 
 // function bodyparser() { // 中间件的固定写法
 //   return async (ctx,next )=>{

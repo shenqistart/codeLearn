@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.6.1",
     "koa": "^2.6.2",
     "koa-better-body": "^3.0.4",
     "koa-bodyparser": "^4.2.1",
