@@ -18,6 +18,9 @@ let tmpl = '';
 tmpl+=`
 
 */
+
+// 1.用一个变量拼出自己想要的结果， 2.加上一个with方便取值
+// 3.在把这个变量返回   4.让字符串变成函数执行一下 拿到最终的结果
 function render(templateStr,data) {
   // 拼出来一个js的脚本字符串
   let str = `let tmpl = ''\r\n`;
@@ -28,10 +31,16 @@ function render(templateStr,data) {
   });
   content+='`\r\n}'
   let tail =  `\r\nreturn tmpl`
-  let fnStr = str + content + tail
+  let fnStr = str + content + tail;
   let fn = new Function('b',fnStr);
   return fn(data);
-}
-
+};
 let r = render(templateStr,{arr:[1,2,3]});
 console.log(r);
+
+let obj = {
+  arr:1
+}
+with(obj){
+  console.log(arr);
+}

@@ -19,7 +19,7 @@ Buffer.prototype.split = function (sep) {
 
 // 中间件 中间件一般是一个函数，会在use方法中的最上面使用
 function body({uploadDir=__dirname}) {
-  return async (ctx,next)=>{
+  return async (ctx,next)=>{ 
     await new Promise((resolve,reject)=>{
       let arr = [];
       ctx.req.on('data',function (chunk) {

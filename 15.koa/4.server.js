@@ -9,9 +9,9 @@ let logger = function () {
   })
 }
 // koa可以解决异步问题
-app.use( (ctx,next)=>{
-    ctx.body = 1000;
-   
+app.use( async (ctx,next)=>{
+   ctx.body = 1000;
+   await next();
 });
 app.use(async(ctx, next) => {
     await logger();

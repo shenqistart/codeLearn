@@ -67,4 +67,4 @@ class Application extends EventEmitter{
     server.listen(...args);
   }
 }
-module.exports = Application
+module.exports = Application;

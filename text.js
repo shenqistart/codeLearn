@@ -1,7 +1,7 @@
-function anonymous(b
+function anonymous(data
 ) {
   let tmpl = ''
-  with (b) {
+  with (data) {
     tmpl += `<!DOCTYPE html>
 <html lang="en">
 <head>
