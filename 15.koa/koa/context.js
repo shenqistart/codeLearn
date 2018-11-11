@@ -10,7 +10,7 @@ function defineSetter(property,key) {
   // ctx.body = '123'  ctx.response.body = 123
   proto.__defineSetter__(key,function (value) {
     this[property][key] = value;
-  })
+  });
 }
 defineGetter('request','path');
 defineGetter('request','url');

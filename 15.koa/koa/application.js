@@ -6,7 +6,7 @@ let response = require('./response');
 class Application extends EventEmitter{
   constructor(){
     super();
-    this.middleware = [];
+    this.middlewares = [];
     this.context = Object.create(context);
     this.request = Object.create(request);
     this.response = Object.create(response);
@@ -20,15 +20,27 @@ class Application extends EventEmitter{
     return ctx;
   }
   // 处理当前的请求的方法
+  compose(ctx,middlewares){ // 处理了promise的逻辑
+    function dispatch(index) {
+      if(index === middlewares.length) return Promise.resolve();
+      let middleware = middlewares[index];
+      return Promise.resolve(middleware(ctx,()=>dispatch(index+1)))
+    }
+    return dispatch(0);
+  }
   handleRequest(req,res){
     // 先要创建一个context对象
     let ctx = this.createContext(req,res);
     // 要把所有的中间件进行组合
-    this.middleware[0](ctx);
+    let p = this.compose(ctx,this.middlewares);
+    // 我希望等待所有中间件执行完后 在取出ctx.body把结果响应回去
+    p.then(function () {
+      console.log(ctx.body);
+    })
   }
   // 中间件方法 用来收集中间件的
   use(callback){
-    this.middleware.push(callback);
+    this.middlewares.push(callback);
   }
   // 创建服务并监听端口号
   listen(...args){
