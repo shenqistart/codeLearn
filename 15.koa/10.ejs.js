@@ -30,7 +30,7 @@ function render(templateStr,data) {
     return '`\r\n'+arguments[1] +'\r\ntmpl+=`'
   });
   content+='`\r\n}'
-  let tail =  `\r\nreturn tmpl`
+  let tail =  `\r\nreturn tmpl`;
   let fnStr = str + content + tail;
   let fn = new Function('b',fnStr);
   return fn(data);
