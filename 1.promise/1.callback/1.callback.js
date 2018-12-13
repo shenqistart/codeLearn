@@ -1,19 +1,19 @@
 
 // 有一个函数可以接收一个函数，可以根据条件选择执行这个函数
 
-// function after(times,callback) {
-//    return function () {
-//       if(--times === 0){
-//         callback();
-//       }
-//    }
-// }
-// let fn = after(3,function () {
-//   console.log('fn 被调用了3次')
-// });
-// fn();
-// fn();
-
+function after(times,callback) {
+   return function () {
+      if(--times === 0){
+        callback();
+      }
+   }
+}
+let fn = after(3,function () {
+  console.log('fn 被调用了3次')
+});
+fn();
+fn();
+fn();
 // 读一个文件 3s后才能获取结果
 
 // function read(callback) {
