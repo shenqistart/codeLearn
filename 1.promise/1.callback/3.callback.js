@@ -1,6 +1,7 @@
 let fs = require('fs');
 // 发布订阅 先把需要订阅的内容保存到队列里，当发布时让数组中的函数依次执行即可
 let school = {}
+// 这里可以用this来表示
 let Dep = {
   arr:[],
   on(fn){
@@ -14,6 +15,19 @@ let Dep = {
     }
   }
 };
+// let Dep = {
+//   arr:[],
+//   on(fn){
+//     Dep.arr.push(fn);
+//   },
+//   emit(){
+//     if(Object.keys(school).length === 3){
+//       Dep.arr.forEach(function (fn) {
+//         fn();
+//       })
+//     }
+//   }
+// };
 // 观察者模式基于发布订阅 vue 观察者模式
 Dep.on(function() {
   console.log(school);

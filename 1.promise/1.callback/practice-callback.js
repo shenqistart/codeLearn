@@ -6,6 +6,7 @@ function after(time,callback) {
         }
     }
 }
+// 必须把这个函数返回才能拿到输出的值
 let fn=after(3,function(){
     console.log('调用三次的输出结果');
 })
