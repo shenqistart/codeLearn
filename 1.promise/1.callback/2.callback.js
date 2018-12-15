@@ -13,7 +13,6 @@ let fs = require('fs');
 // 多个异步同时执行，再某一个时刻拿到最终的结果
 let school = {};
 // 哨兵函数
-<<<<<<< HEAD
 // function out() {
 //   if (Object.keys(school).length === 3){
 //     console.log(school);
@@ -34,38 +33,36 @@ let out = after(3, function (data) {
   console.log(data);
 });
 fs.readFile('./name.txt', 'utf8', function (err, data) {
-=======
-function out() {
-  console.log(Object.keys(school),'out');
-  
-  if (Object.keys(school).length === 3){
-    console.log(school);
+  function out() {
+    console.log(Object.keys(school), 'out');
+
+    if (Object.keys(school).length === 3) {
+      console.log(school);
+    }
   }
-}
-// function after(times,callback) {
-//   return function () {
-//     if(--times === 0){
-//       callback(school);
-//     }
-//   }
-// }
-// let out = after(3,function (data) {
-//   console.log(data);
-// });
-fs.readFile('./name.txt','utf8',function (err,data) {
-  // 之前没有的就会报undefined
-  // school.name.first = data;
->>>>>>> 0d8f1f90ece418354be80e5e1bf7963f3047fce3
-  school.name = data;
-  out();
-})
-fs.readFile('./age.txt', 'utf8', function (err, data) {
-  school.age = data;
-  out();
-});
-fs.readFile('./address.txt', 'utf8', function (err, data) {
-  school.address = data;
-  out();
-});
+  // function after(times,callback) {
+  //   return function () {
+  //     if(--times === 0){
+  //       callback(school);
+  //     }
+  //   }
+  // }
+  // let out = after(3,function (data) {
+  //   console.log(data);
+  // });
+  fs.readFile('./name.txt', 'utf8', function (err, data) {
+    // 之前没有的就会报undefined
+    // school.name.first = data;
+    school.name = data;
+    out();
+  })
+  fs.readFile('./age.txt', 'utf8', function (err, data) {
+    school.age = data;
+    out();
+  });
+  fs.readFile('./address.txt', 'utf8', function (err, data) {
+    school.address = data;
+    out();
+  });
 
 // 发布订阅模式

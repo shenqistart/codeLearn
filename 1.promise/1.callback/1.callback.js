@@ -8,7 +8,6 @@
 // 函数柯里化
 // function a(a, b, c) {
 
-<<<<<<< HEAD
 // };
 // function a(a) {
 //   return function b(b) {
@@ -38,21 +37,6 @@
 // a接口获取数据内容 姓名
 // b接口获取数据内容 年龄
 
-=======
-function after(times,callback) {
-   return function () {
-      if(--times === 0){
-        callback();
-      }
-   }
-}
-let fn = after(3,function () {
-  console.log('fn 被调用了3次')
-});
-fn();
-fn();
-fn();
->>>>>>> 0d8f1f90ece418354be80e5e1bf7963f3047fce3
 // 读一个文件 3s后才能获取结果
 
 // function read(callback) {
