@@ -12,12 +12,41 @@
 // var a =1;
 // var a=2;
 // console.log(a);
+<<<<<<< HEAD
 for (let i = 0; i < 100; i++) {
+=======
+// 依然会记录这些值
+for(let i = 0;i<100;i++){
+>>>>>>> 0d8f1f90ece418354be80e5e1bf7963f3047fce3
   setTimeout(() => {
     console.log(i);
   }, 1);
 }
+// 全是100
+for(var i = 0;i<100;i++){
+  setTimeout(() => {
+      console.log(i);
+  }, 1);
+}
 // 常量 不能更改的量,不能更改值的引用地址
+<<<<<<< HEAD
 const a = { a: 1 };
+=======
+const a = {a:1};
+console.log(a,a);
+>>>>>>> 0d8f1f90ece418354be80e5e1bf7963f3047fce3
 a.a = 100;
+console.log(a,a);
+// let a = 2
+// {
+//   console.log(a)
+//   let a = 1
+// }
+// console.log(a);
+var a=2;
+{
+  var a=1;
+}
+console.log(a);//1
+
 // 如果这个变量不想被别人更改那就应该用const 

@@ -19,6 +19,7 @@
   "homepage": "https://github.com/zhufengzhufeng/promise-public#readme",
   "dependencies": {
     "bluebird": "^3.5.2",
-    "co": "^4.6.0"
+    "co": "^4.6.0",
+    "http-proxy": "^1.17.0"
   }
 }
