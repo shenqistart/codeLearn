@@ -13,7 +13,7 @@ let p = new Proxy(obj, {
     // return target[key]
   },
   set(target, key, value) {
-    // 放数组的两步，添加和变长度
+    // 放数组的两步，添加和变长度，这个是为了节省开支
     if (key === 'length') return true
     return Reflect.set(target, key, value);
   }

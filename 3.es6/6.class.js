@@ -1,5 +1,6 @@
-class Circle{
-  a=1
+class Circle {
+  // es7的方法
+  a = 1
   //static PI = 3.14
 }
 // es6中不支持静态属性 但是使用属性解析器后就支持了
