@@ -3,13 +3,17 @@
 // Reflect 反射
 
 // 双向绑定 数据变化可以更新视图
-let obj = { name: { name: proxy } };
+let obj = { name: { name: 'proxy' } };
 // Object.defineProperty不支持数组的
 // 可以监控到数组的变化
+// 这里不需要进行迭代
 let p = new Proxy(obj, {
   get(target, key) { // 第三个属性叫代理的对象一般不用
     // toString() valueOf()
+    console.log(Reflect);
     return Reflect.get(target, key);
+
+
     // return target[key]
   },
   set(target, key, value) {
@@ -18,4 +22,6 @@ let p = new Proxy(obj, {
     return Reflect.set(target, key, value);
   }
 });
-p.name = 'hello'; // 可以不用必须保证属性的存在
+p.name.name = 'hello'; // 可以不用必须保证属性的存在
+console.log(p, obj);
+
