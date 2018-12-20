@@ -60,8 +60,10 @@ function compose(...fns) {
 let l = compose(len, toUpperCase, sum)('a', 'b');
 console.log(l);
 
-Array.prototype.reduce = function (callback, prev) {
+Array.prototype.myReduce = function (callback, prev) {
+  // this就是Array.prototype
   for (let i = 0; i < this.length; i++) {
+    // 有没有传参
     if (typeof prev != 'undefined') {
       prev = callback(prev, this[i], i, this);
     } else {
@@ -72,7 +74,12 @@ Array.prototype.reduce = function (callback, prev) {
   }
   return prev
 }
+let ary=[1,2,3,4].myReduce((prev,next,currentIndex)=>{
+  return prev+next;
+},100);
+console.log(ary);
+
 let t = [{ price: 10, count: 10 }, { price: 2, count: 5 }, { price: 3, count: 4 }].reduce((prev, current) => {
-  return prev + current.price * current.count
+  return  current.price * current.count
 });
 console.log(t);
